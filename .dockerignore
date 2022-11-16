@@ -1,0 +1,8 @@
+node_modules
+migrations
+seeders
+.vscode
+config/config.template.json
+.prettierrc
+.gitignore
+.eslintrc.json
