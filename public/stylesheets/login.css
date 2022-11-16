@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 body,
 input,
@@ -7,7 +7,7 @@ textarea,
 button,
 a {
   text-size-adjust: none;
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto;
@@ -32,17 +32,16 @@ textarea {
 }
 
 body {
-  /* background-image: url("/images/background.png"); */
+  background-image: url('/images/background.png');
   background-size: cover;
   background-position: center center;
 
   margin: 0;
 }
 
-.logo-img {
+.title-logo {
   object-fit: cover;
   width: 100%;
-  /* max-width: 350px; */
 }
 .login-wrapper,
 .register-wrapper {
@@ -66,19 +65,23 @@ body {
 }
 
 #submitBtn {
-  background-color: #16aca9;
+  background-color: #ff9999;
   transition: all 0.3s ease-out;
 }
 
 #submitBtn:hover {
-  background-color: #005899;
+  background-color: #ff7777;
+  cursor: pointer;
 }
 
 .main {
   min-height: 90vh;
   height: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  width: fit-content;
 }
 @media (min-width: 768px) {
   .main {
@@ -87,55 +90,50 @@ body {
 }
 
 ._container {
-  /* background-color: #ffffff; */
-  color: rgba(107, 114, 128, 1);
-  /* border-radius: 1.5rem; */
-  width: 80%;
+  margin: 0 auto;
+  color: #6b7280;
+  width: 100%;
   min-width: 355px;
   max-width: 650px;
   overflow: hidden;
   display: flex;
-  margin-bottom: 20px;
   align-items: center;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0px 35px 0px rgb(0 0 0 / 18%);
   border-radius: 1rem;
 }
 
+@media (max-width: 768px) {
+  ._container {
+    width: 90%;
+  }
+}
 .flexbox {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
-  .flexbox {
-    /* flex-direction: row; */
-  }
-}
-
 ._mainLogo {
   display: flex;
-  /* background-color: white; */
   flex-wrap: nowrap;
-  justify-content: center;
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  /* justify-content: center; */
+  padding: 1.5rem;
   align-items: center;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   ._mainLogo {
-    /* width: 50%; */
+    width: 80%;
+    margin: 0 auto;
   }
 }
 
 ._loginForm {
-  /* width: 100%; */
   display: flex;
   padding: 2.5rem 1.5rem 2.5rem 1.5rem;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #ebedf9;
+  background-color: #ffffff;
 }
 @media (min-width: 768px) {
   ._loginForm {
@@ -152,7 +150,7 @@ body {
 
 ._loginForm > .title > h1 {
   font-weight: 700;
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 2.25rem;
   margin: 0;
   color: black;
@@ -186,7 +184,7 @@ body {
   padding-right: 0.25rem /* 4px */;
 }
 
-.input-wrapper input[type="text"] {
+.input-wrapper input[type='text'] {
   /* border: 2px solid rgba(229, 231, 235, 1); */
   /* border-radius: 0.5rem; */
 
@@ -204,9 +202,9 @@ body {
   font-size: 16px;
 }
 
-.input-wrapper input[type="text"]:focus {
+.input-wrapper input[type='text']:focus {
   --tw-border-opacity: 1;
-  border-color: rgb(85, 159, 243);
+  border-color: #ff7777;
 }
 
 .flex {
@@ -257,10 +255,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-#submitBtn:hover {
-  background-color: #005899;
-  cursor: pointer;
-}
 
 #submitBtn:focus {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -287,8 +281,32 @@ body {
   border-radius: 0px !important;
 }
 
+.schedule {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.schedule h2 {
+  font-weight: 300;
+  padding: 0 1.5rem;
+  font-size: 1.6rem;
+  text-align: end;
+  line-height: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .schedule {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .schedule h2 {
+    padding: 1rem;
+    font-size: 1.3rem;
+  }
+}
+
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
 }
 footer {
   width: 100%;

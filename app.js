@@ -7,6 +7,7 @@ const logger = require('morgan')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
+const questionRouter = require('./routes/question')
 
 const app = express()
 
@@ -20,15 +21,17 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use('/', indexRouter)
+app.use('/users', usersRouter)
+app.use('/question', questionRouter)
 // helmet middleware
+
+app.disable('x-powered-by')
 app.use(helmet.frameguard())
-app.use(helmet.hidePoweredBy({ setTo: 'nyang nyang punch' }))
+app.use(helmet.hidePoweredBy())
 app.use(helmet.ieNoOpen())
 app.use(helmet.referrerPolicy())
 app.use(helmet.xssFilter())
-
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

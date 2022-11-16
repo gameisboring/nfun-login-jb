@@ -31,7 +31,7 @@ input {
 }
 
 body {
-  background-image: url("/images/home-background.png");
+  background-image: url('/images/background.png');
   background-size: cover;
   background-position: center center;
 
@@ -72,18 +72,33 @@ body {
 }
 
 .container > .frame > .video-info > .logos {
-  display: grid;
-  grid-row: 2/2;
+  display: flex;
+  grid-row: 2 / 2;
   flex-direction: row;
-  background-image: url("/images/logo/1.png");
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-  padding: 1rem;
+  /* background-image: url(/images/logo/2.png); */
+  /* background-size: auto; */
+  /* background-position: center center; */
+  /* background-repeat: no-repeat; */
+  /* padding: 1rem; */
+  /* text-align: center; */
+  align-items: center;
 }
 .container > .frame > .video-info > .logos img {
-  display: none;
+  /* display: none; */
+  margin: 1.5rem auto 0.5rem auto;
+  height: 8vh;
 }
+/* @media (max-width: 1024px) {
+  .container > .frame > .video-info > .logos img {
+    height: 6vh;
+  }
+}
+@media (max-width: 768px) {
+  .container > .frame > .video-info > .logos img {
+    height: 4.5vh;
+  }
+} */
+
 .container > .frame > .video-info > .logos > .logo > span {
   font-weight: 700;
   font-size: 1.5rem;
@@ -120,70 +135,96 @@ body {
   }
 }
 
+.container > .frame > .video-info > .logos h2 {
+  font-size: 3vw;
+  width: 100%;
+  font-weight: 800;
+}
+
 .container > .frame > .reference {
-  background-color: #ebf3f4;
+  /* background-color: #ebf3f4; */
   border-radius: 0.7rem;
-  padding: 1rem;
+  padding: 0 1rem;
   overflow: auto;
 }
 
-/* 출석체크 컬러 */
-.container > .frame > .reference > .check.details {
-  background: #005899;
+/* 질문 컬러 */
+.container > .frame > .reference > .question.details {
+  background: #ffd6d6;
 }
-/* 목요일 컬러 */
-.container > .frame > .reference > .thursday.details {
-  background: #4d2b68;
-  transition: all 0.3s ease;
+
+.container > .frame > .reference > details > .question-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
 }
-.container > .frame > .reference > .thursday.details:hover,
-.container > .frame > .reference > .thursday.details[open] {
-  background: #713f98;
+.container > .frame > .reference > details > .question-box > textarea {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.7rem;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: Pretendard;
+  font-size: 1rem;
+  border: none;
+  resize: none;
 }
-.container > .frame > .reference > .thursday.details > .group > .time-table {
-  background-color: #ebedf9;
-}
-.container
-  > .frame
-  > .reference
-  > .thursday.details
-  > .group
-  > .time-table
-  > .time-group {
-  background-color: #e2d6ec;
-}
-/* 금요일 컬러 */
-.container > .frame > .reference > .friday.details {
-  background: #0f716f;
-  transition: all 0.3s ease;
-}
-.container > .frame > .reference > .friday.details:hover,
-.container > .frame > .reference > .friday.details[open] {
-  background: #16aca9;
-}
-.container > .frame > .reference > .friday.details > .group > .time-table {
-  background-color: #e9f5f5;
+.container > .frame > .reference > details > .question-box > textarea:focus {
+  outline: none;
 }
 .container
   > .frame
   > .reference
-  > .friday.details
-  > .group
-  > .time-table
-  > .time-group {
-  background-color: #c1e2e1;
+  > details
+  > .question-box
+  > .contents
+  > button {
+  border: 0;
+  background-color: #ffd6d6;
+  color: #000;
+  border-radius: 0.7rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 400;
+  width: 100%;
+  transition: all 0.2s ease-in;
 }
+.container
+  > .frame
+  > .reference
+  > details
+  > .group
+  > .contents
+  > .content:hover,
+.container > .frame > .reference > details > .question-box button:hover {
+  background-color: #ff7777;
+  cursor: pointer;
+}
+.container
+  > .frame
+  > .reference
+  > details
+  > .group
+  > .contents
+  > .content:active,
+.container > .frame > .reference > details > .question-box button :active {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
 /* 토요일 컬러 */
 .container > .frame > .reference > .saturday.details {
-  background-color: #84543a;
+  background-color: #fff;
   transition: all 0.3s ease;
 }
-.container > .frame > .reference > .saturday.details:hover,
-.container > .frame > .reference > .saturday.details[open] {
-  background-color: #c57d55;
-}
 .container > .frame > .reference > .saturday.details > .group > .time-table {
-  background-color: #f6f1eb;
+  background-color: #ffffff;
 }
 .container
   > .frame
@@ -192,13 +233,11 @@ body {
   > .group
   > .time-table
   > .time-group {
-  background-color: #f3dbcf;
+  background-color: #ffd6d6;
 }
 .container > .frame > .reference > .details {
   border-radius: 1rem;
   margin-bottom: 0.5rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .container > .frame > .reference > .details > .title {
@@ -210,7 +249,7 @@ body {
   -webkit-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  color: #ffffff;
+  color: #000;
 }
 .container > .frame > .reference > .details > .title:hover,
 .container > .frame > .reference > .details[open] > .title {
@@ -236,15 +275,13 @@ body {
 }
 
 summary::marker {
-  content: "\e5db";
-  font-family: "Material Symbols Outlined";
-  font-weight: 700;
+  content: '';
 }
 details[open] summary::marker {
-  content: "\e5d8";
+  content: '';
 }
 .container > .frame > .reference > .details > .group {
-  border: 1px solid #aaa;
+  /* border: 1px solid #aaa; */
   margin-bottom: 0.7rem;
   padding: 0.7rem;
   border-radius: 0.7rem;
@@ -276,7 +313,7 @@ details[open] summary::marker {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  background-color: #005899;
+  /* background-color: #6b6be6; */
   border-radius: 7px;
 }
 .container > .frame > .reference > .details > .group > .contents > .content {
@@ -349,6 +386,18 @@ details[open] summary::marker {
   border-radius: 0.7rem;
   font-weight: 500;
   font-size: 1.1rem;
+}
+
+.container
+  > .frame
+  > .reference
+  > details
+  > .group
+  > .time-table
+  > .time-group
+  > .people {
+  font-size: 0.8rem;
+  color: #777777;
 }
 .container > .frame > .reference > details > .group > .time-table > .time-form {
   border-bottom: 1px solid #eee;
@@ -472,6 +521,7 @@ details[open] summary::marker {
 .container > div:last-child > img {
   width: 10rem;
 }
+
 @media (max-width: 1280px) {
   .container {
     height: auto;
@@ -482,7 +532,7 @@ details[open] summary::marker {
     align-items: normal;
   }
   .container > .frame {
-    width: 100%;
+    /* width: 100%; */
     height: auto;
     -ms-grid-rows: auto auto 1fr;
     grid-template-rows: auto auto 1fr;
@@ -503,6 +553,11 @@ details[open] summary::marker {
     -ms-grid-row-span: 1;
     grid-row: 1/2;
   }
+
+  .container > .frame > .video-info > .logos h2 {
+    font-size: 4.5vw;
+    text-align: center;
+  }
   .container > .frame > .video-info > .info {
     -ms-grid-row: 3;
     -ms-grid-row-span: 1;
@@ -516,25 +571,21 @@ details[open] summary::marker {
     grid-row: 2/3;
     min-height: 300px;
     grid-column: unset;
+    padding: 0;
   }
   .container > .frame > .video-info {
     grid-template-rows: minmax(13.5vh, auto) 1fr;
   }
   .container > .frame > .video-info > .logos {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-image: url("");
+    /* justify-content: space-between; */
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
-  .container > .frame > .video-info > .logos img {
-    max-width: 400px;
+  /* .container > .frame > .video-info > .logos img {
     margin: 0 auto;
-    width: 50%;
     display: block;
-  }
+    height: 6vh;
+  } */
   .container > .frame > .video-info > .logos h1 {
     font-size: 3.5vw;
     margin-left: 0;
@@ -598,5 +649,5 @@ details[open] summary::marker {
   font-weight: 700 !important;
 }
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
