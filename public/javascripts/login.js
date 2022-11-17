@@ -1,6 +1,11 @@
 'use strict'
 
-var agent = navigator.userAgent.toLowerCase()
+const agent = navigator.userAgent.toLowerCase()
+const today = new Date().getDate()
+const Dday = new Date('2022-11-30').getDate()
+const isToday = () => {
+  return today === Dday
+}
 const input_account = $('#account-input')
 const input_name = $('#name-input')
 // const accountCheck = /^[\s0-9]+$/
@@ -27,11 +32,14 @@ if (navigator.userAgent.indexOf('Trident') > 0) {
 $(window).on('load', function () {
   console.log('로그인 페이지')
   removeMask()
-  Swal.fire({
-    icon: 'info',
-    title: '접속 가능 기간이 아닙니다',
-    text: '2022년 11월 30일에 접속이 가능합니다',
-  })
+  console.log(isToday())
+  if (!isToday()) {
+    Swal.fire({
+      icon: 'info',
+      title: '접속 가능 기간이 아닙니다',
+      text: '2022년 11월 30일에 접속이 가능합니다',
+    })
+  }
 })
 
 $('#submitBtn').on('click', notice)
@@ -66,15 +74,7 @@ function loginButtonClickForExplorer() {
       alert('소속을 입력해주세요')
     }
     return false
-  } /* else {
-    if (!accountCheck.test(input_account.val())) {
-      Swal.fire({
-        icon: 'warning',
-        title: '면허번호에는\n숫자만 입력해주세요',
-      })
-      return false
-    }
-  } */
+  }
 
   if (!input_name.val()) {
     Swal.fire({
@@ -111,15 +111,7 @@ function loginButtonClick() {
       alert('소속을 입력해주세요')
     }
     return false
-  } /* else {
-    if (!accountCheck.test(input_account.val())) {
-      Swal.fire({
-        icon: 'warning',
-        title: '면허번호에는\n숫자만 입력해주세요',
-      })
-      return false
-    }
-  } */
+  }
 
   if (!input_name.val()) {
     Swal.fire({
@@ -153,6 +145,7 @@ function login(postData) {
     success: function (res) {
       switch (res.ok) {
         case true: {
+          /* 로그인 성공 : 관리자 */
           if (res.role === 'a') {
             Swal.fire({
               title: '이동할 페이지 선택',
@@ -176,7 +169,7 @@ function login(postData) {
               })
             break
           }
-
+          /* 로그인 성공 : 참가자 */
           if (res.date) {
             try {
               Swal.fire({
@@ -204,7 +197,7 @@ function login(postData) {
           }
           break
         }
-
+        /* 로그인 실패 */
         case false: {
           Swal.fire({
             icon: 'warning',
@@ -218,7 +211,7 @@ function login(postData) {
           })
           break
         }
-
+        /* 로그인 실패 : 서버오류 */
         default: {
           Swal.fire({
             icon: 'warning',
@@ -241,11 +234,13 @@ function notice() {
   if (postData.account === '000000' && postData.name === '관리자') {
     location.href = '/home?acc=' + postData.account
   } else {
-    Swal.fire({
-      icon: 'info',
-      title: '접속 가능 기간이 아닙니다',
-      text: '2022년 11월 31일에 접속 가능합니다',
-    })
+    if (!isToday()) {
+      Swal.fire({
+        icon: 'info',
+        title: '접속 가능 기간이 아닙니다',
+        text: '2022년 11월 30일에 접속 가능합니다',
+      })
+    }
   }
 }
 
