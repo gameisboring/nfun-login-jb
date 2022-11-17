@@ -3,7 +3,7 @@
 var agent = navigator.userAgent.toLowerCase()
 const input_account = $('#account-input')
 const input_name = $('#name-input')
-const accountCheck = /^[\s0-9]+$/
+// const accountCheck = /^[\s0-9]+$/
 const nameCheck = /^[가-힣a-zA-Z\s]+$/
 
 // IE -> EDGE 우회
@@ -25,12 +25,12 @@ if (navigator.userAgent.indexOf('Trident') > 0) {
 }
 
 $(window).on('load', function () {
-  console.log('home')
+  console.log('로그인 페이지')
   removeMask()
   Swal.fire({
     icon: 'info',
     title: '접속 가능 기간이 아닙니다',
-    text: '2022년 11월 31일에 접속이 가능합니다',
+    text: '2022년 11월 30일에 접속이 가능합니다',
   })
 })
 
@@ -57,16 +57,16 @@ function loginButtonClickForExplorer() {
     try {
       Swal.fire({
         icon: 'warning',
-        title: '면허번호를 입력해주1세요',
+        title: '소속을 입력해주1세요',
       })
 
-      alert('면허번호를 입력해주세요')
+      alert('소속을 입력해주세요')
     } catch (error) {
       console.log(error)
-      alert('면허번호를 입력해주세요')
+      alert('소속을 입력해주세요')
     }
     return false
-  } else {
+  } /* else {
     if (!accountCheck.test(input_account.val())) {
       Swal.fire({
         icon: 'warning',
@@ -74,7 +74,7 @@ function loginButtonClickForExplorer() {
       })
       return false
     }
-  }
+  } */
 
   if (!input_name.val()) {
     Swal.fire({
@@ -104,14 +104,14 @@ function loginButtonClick() {
     try {
       Swal.fire({
         icon: 'warning',
-        title: '면허번호를 입력해주세요',
+        title: '소속을 입력해주세요',
       })
     } catch (error) {
       console.log(error)
-      alert('면허번호를 입력해주세요')
+      alert('소속을 입력해주세요')
     }
     return false
-  } else {
+  } /* else {
     if (!accountCheck.test(input_account.val())) {
       Swal.fire({
         icon: 'warning',
@@ -119,7 +119,7 @@ function loginButtonClick() {
       })
       return false
     }
-  }
+  } */
 
   if (!input_name.val()) {
     Swal.fire({
@@ -209,7 +209,7 @@ function login(postData) {
           Swal.fire({
             icon: 'warning',
             title: '로그인 실패',
-            text: '성함과 면허번호를 확인해주세요',
+            text: '소속과 성함을 확인해주세요',
           }).then(function () {
             input_account.val('')
             isInvalid(input_account, '')
@@ -242,7 +242,7 @@ function notice() {
     location.href = '/home?acc=' + postData.account
   } else {
     Swal.fire({
-      icon: 'warning',
+      icon: 'info',
       title: '접속 가능 기간이 아닙니다',
       text: '2022년 11월 31일에 접속 가능합니다',
     })
@@ -265,13 +265,9 @@ function isInvalid(inputDOM, text) {
 
 input_account.on('blur', function () {
   if (input_account.val()) {
-    if (accountCheck.test(input_account.val())) {
-      isValid(input_account, '✔')
-    } else {
-      isInvalid(input_account, '숫자만 입력해주세요')
-    }
+    isValid(input_account, '✔')
   } else {
-    isInvalid(input_account, '면허번호를 입력해주세요')
+    isInvalid(input_account, '소속을 입력해주세요')
   }
 })
 input_name.on('blur', function () {

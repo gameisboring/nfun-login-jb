@@ -18,6 +18,13 @@ if (navigator.userAgent.indexOf('Trident') > 0) {
 
 $(window).on('load', function () {
   console.log('home')
+  if (!getAccount()) {
+    Swal.fire({
+      icon: 'warning',
+      title: '잘못된 접근입니다',
+      text: '로그인을 통해 접속해주세요',
+    })
+  }
   removeMask()
 })
 function getAccount() {
