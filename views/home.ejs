@@ -98,9 +98,21 @@
           <details open class="details question">
             <summary class="title">질문하기</summary>
             <div class="question-box group">
-              <input type="hidden" name="account" value="<%= account %> " />
+              <input
+                type="hidden"
+                name="account"
+                value="<%= account %>"
+                id="question-account"
+              />
+              <input
+                type="hidden"
+                name="name"
+                value="<%= name %> "
+                id="question-name"
+              />
               <textarea
                 type="text"
+                name="context"
                 placeholder="강의 내용에 관한 질의가 있으신 경우 질문할 메세지를 적고 질문제출 버튼을 클릭하세요."
                 rows="8"
               ></textarea>

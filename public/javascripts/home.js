@@ -23,6 +23,9 @@ $(window).on('load', function () {
       icon: 'warning',
       title: '잘못된 접근입니다',
       text: '로그인을 통해 접속해주세요',
+      confirmButtonColor: '#ff7777',
+    }).then((result) => {
+      location.href = '/'
     })
   }
   removeMask()
@@ -55,7 +58,7 @@ $('#question-submit-button').on('click', function () {
           type: 'POST',
           data: {
             account: getAccount(),
-            name: $('.question-box > input').val(),
+            name: $('#question-name').val(),
             context: $('.question-box > textarea').val(),
           },
           dataType: 'JSON',
@@ -64,6 +67,7 @@ $('#question-submit-button').on('click', function () {
               Swal.fire({
                 icon: 'success',
                 title: '질문이 성공적으로 제출되었습니다',
+                confirmButtonColor: '#ff7777',
               }).then(() => {
                 $('.question-box > textarea').val('')
               })
@@ -71,6 +75,7 @@ $('#question-submit-button').on('click', function () {
               Swal.fire({
                 icon: 'error',
                 title: '질문 제출에 실패했습니다',
+                confirmButtonColor: '#ff7777',
               })
             }
           },
