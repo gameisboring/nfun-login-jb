@@ -90,13 +90,13 @@ $('#question-submit-button').on('click', function () {
 /**
  * 접속여부 체크
  */
-/* setInterval(function () {
+setInterval(function () {
   $.ajax({
-    url: '/home',
+    url: '/users/ping',
     type: 'POST',
     data: {
-      acc: getAccount(),
-      name: $('#mask > input').val(),
+      account: getAccount(),
+      name: $('#question-name').val(),
     },
     dataType: 'JSON',
     success: function () {
@@ -105,7 +105,7 @@ $('#question-submit-button').on('click', function () {
   }).fail(function () {
     console.log('ping fail')
   })
-}, 1000 * 60) */
+}, 1000 * 5)
 
 class Accordion {
   constructor(el) {

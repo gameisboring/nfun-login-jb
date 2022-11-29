@@ -23,5 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'User',
     }
   )
+  // Remove default primary Keys
+  User.removeAttribute('id')
+
   return User
 }

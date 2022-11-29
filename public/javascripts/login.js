@@ -18,7 +18,7 @@ if (navigator.userAgent.indexOf('Trident') > 0) {
 
 const agent = navigator.userAgent.toLowerCase()
 const today = new Date().getDate()
-const Dday = new Date('2022-11-30').getDate()
+const Dday = new Date('2022-11-29').getDate()
 const isToday = () => {
   console.log(today, Dday, new Date().getHours())
   return today === Dday
@@ -114,6 +114,29 @@ function login(postData) {
     success: function (res) {
       switch (res.ok) {
         case true: {
+          if (res.role === '관리자') {
+            Swal.fire({
+              title: '이동할 페이지 선택',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: '관리자 페이지',
+              cancelButtonColor: '#d33',
+              cancelButtonText: '시청 페이지',
+            })
+              .then(function (res) {
+                $('body').css('display', 'none')
+                return res
+              })
+              .then(function (result) {
+                if (result.isConfirmed) {
+                  location.href = '/admin?acc=' + postData.account
+                } else {
+                  location.href = `/home?acc=${postData.account}&name=${postData.name}`
+                }
+              })
+            break
+          }
           try {
             Swal.fire({
               icon: 'success',

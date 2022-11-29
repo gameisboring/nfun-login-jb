@@ -1,6 +1,23 @@
+'use strict'
+$(window).on('load', function () {
+  console.log('admin')
+  if (!getAccount()) {
+    Swal.fire({
+      icon: 'warning',
+      title: '잘못된 접근입니다',
+      text: '로그인을 통해 접속해주세요',
+      confirmButtonColor: '#ff7777',
+    }).then((result) => {
+      location.href = '/'
+    })
+  }
+  removeMask()
+})
+function getAccount() {
+  const account = new URL(window.location.href).searchParams.get('acc')
+  return account
+}
 function removeMask() {
-  // $('#mask').fadeOut(1e3), $('.window').hide()
-
   document.getElementById('mask')
   hide()
 }
@@ -18,29 +35,42 @@ function hide() {
 }
 
 function getUsersListWithAjax() {
+  var count
+
   $.ajax({
     url: '/users',
     method: 'GET',
     dataType: 'JSON',
+    async: false,
+    data: { account: getAccount() },
     success: (t) => {
-      if (t.length > 0) console.log(t.length + '명의 참석자 정보 불러오기 성공')
-      for (var e in ($('#booked-body').empty(), t)) bookRender(t[e])
+      if (t.length > 0)
+        for (var e in ($('#booked-body').empty(), t)) bookRender(t[e])
+
+      count = t.length
     },
   })
+
+  return count
 }
+
 function getQuestionListWithAjax() {
+  var count
   $.ajax({
-    url: '/question',
+    url: '/question/data',
     method: 'GET',
     dataType: 'JSON',
+    async: false,
     success: (t) => {
       if (($('#question-body').empty(), t.length > 0))
-        for (var e in (console.log(t.length + '개의 질문 정보 불러오기 성공'),
-        t))
-          questionRender(t[e])
+        for (var e in t) questionRender(t[e])
       else nullQuestionRender()
+
+      count = t.length
     },
   })
+
+  return count
 }
 
 function bookRender(t) {
@@ -74,12 +104,6 @@ function questionRender(t) {
   e.append(i)
 }
 
-function infoRender(t) {
-  $('#hit-count').text(t.HITS),
-    $('#user-count').text(t.USERS),
-    $('#question-count').text(t.QUESTIONS)
-}
-
 function nullQuestionRender() {
   const t = $('#question-body'),
     e = document.createElement('tr')
@@ -110,35 +134,25 @@ function getUsersList() {
     getUsersListWithAjax(),
     $('#users').css('display', 'flex')
 }
+
 $(document).ready(() => {
   setUptime(),
+    $('#user-count').text(getUsersListWithAjax()),
+    $('#question-count').text(getQuestionListWithAjax()),
     setInterval(() => {
       setUptime()
     }, 1e3)
+  setInterval(() => {
+    $('#user-count').text(getUsersListWithAjax()),
+      $('#question-count').text(getQuestionListWithAjax())
+  }, 1e4)
 }),
   $(window).load(function () {
     removeMask(), getUsersListWithAjax(), getQuestionListWithAjax()
   }),
   $('#download-users-button').on('click', function () {
-    $.ajax({
-      url: '/users/download',
-      type: 'get',
-      dataType: 'JSON',
-      success: (t) => {
-        console.log(t)
-      },
-    })
+    location.href = '/users/download'
   }),
   $('#download-question-button').on('click', function () {
-    $.ajax({
-      url: '/question/download',
-      type: 'get',
-      dataType: 'JSON',
-      success: (t) => {
-        console.log(t)
-      },
-    })
+    location.href = '/question/download'
   })
-// setInterval(() => {
-//   getQuestionListWithAjax(), getUsersListWithAjax()
-// }, 5e3)

@@ -1,0 +1,16 @@
+body {
+  margin: 2em;
+}
+table {
+  border-spacing: 0px;
+}
+
+#question-table td {
+  border: 1px solid black;
+}
+
+#question-table .account,
+#question-table .name,
+#question-table .time {
+  width: 8%;
+}
