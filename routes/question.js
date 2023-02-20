@@ -37,16 +37,15 @@ router.get('/data', async (req, res) => {
   const result = await models.Question.findAll({
     attributes: ['name', 'account', 'createdAt', 'context'],
     raw: true,
+  }).then((result) => {
+    res.send(result)
   })
-    .then((result) => {
+  /* .then((result) => {
       result.forEach((data) => {
         data.createdAt = new Date(data.createdAt).toLocaleString('ko-KR')
       })
       return result
-    })
-    .then((result) => {
-      res.send(result)
-    })
+    }) */
 })
 
 /**

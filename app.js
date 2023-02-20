@@ -25,11 +25,6 @@ app.use('/question', questionRouter)
 // helmet middleware
 
 app.disable('x-powered-by')
-app.use(helmet.frameguard())
-app.use(helmet.hidePoweredBy())
-app.use(helmet.ieNoOpen())
-app.use(helmet.referrerPolicy())
-app.use(helmet.xssFilter())
 
 //* 에러 컨트롤 */
 app.use(errorController.pageNotFoundError)

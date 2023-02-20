@@ -103,6 +103,9 @@ router.get('/download', async (req, res) => {
     result.forEach((data) => {
       data.createdAt = new Date(data.createdAt).toLocaleString()
     })
+    result.forEach((data) => {
+      data.lastAccess = new Date(data.lastAccess).toLocaleString()
+    })
     console.log(result)
     const fileServe = new Promise(async (res, rej) => {
       if (result) {

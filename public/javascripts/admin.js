@@ -76,13 +76,31 @@ function getQuestionListWithAjax() {
 function bookRender(t) {
   console.log(t)
   const e = $('#booked-body'),
-    s = `\n      <td class="px-6 py-4 whitespace-nowrap"><div class="flex items-center"><div class="text-sm font-medium text-gray-900">${
-      t.name
-    }</div></div></td><td class="px-6 py-4 whitespace-nowrap"><div class="text-sm text-gray-900">${
-      t.account
-    }</div></td><td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${
-      '관리자' === t.role ? '관리자' : '시청자'
-    }</td>`,
+    s = `<td class="px-6 py-4 whitespace-nowrap">
+          <div class="flex items-center">
+            <div class="text-sm font-medium text-gray-900">
+            ${t.name}
+            </div>
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">
+          ${t.account}
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">
+          ${new Date(t.createdAt).toLocaleString()}
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="text-sm text-gray-900">
+          ${new Date(t.lastAccess).toLocaleString()}
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        ${'관리자' === t.role ? '관리자' : '시청자'}
+        </td>`,
     n = document.createElement('tr')
   ;(n.innerHTML = s), e.append(n)
 }

@@ -18,10 +18,11 @@ if (navigator.userAgent.indexOf('Trident') > 0) {
 
 const agent = navigator.userAgent.toLowerCase()
 const today = new Date().getDate()
-const Dday = new Date('2022-11-29').getDate()
+const Dday = new Date('2022-11-30').getDate()
 const isToday = () => {
   console.log(today, Dday, new Date().getHours())
-  return today === Dday
+  // return today === Dday
+  return true
 }
 const input_account = $('#account-input')
 const input_name = $('#name-input')
@@ -114,7 +115,8 @@ function login(postData) {
     success: function (res) {
       switch (res.ok) {
         case true: {
-          if (res.role === '관리자') {
+          // if (res.role === '관리자') {
+          if (true) {
             Swal.fire({
               title: '이동할 페이지 선택',
               icon: 'question',
